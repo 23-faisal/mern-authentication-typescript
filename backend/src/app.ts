@@ -3,6 +3,7 @@ import cors from "cors";
 import { appOrigin } from "./constants/env";
 import cookieParser from "cookie-parser";
 import errorHandler from "./middlewares/errorHandler";
+import { authRouter } from "./routes/auth.route";
 
 export const app = express();
 
@@ -15,5 +16,9 @@ app.use(
   })
 );
 app.use(cookieParser());
+
+// auth route
+
+app.use("/api/auth", authRouter);
 
 app.use(errorHandler);
