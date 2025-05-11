@@ -1,11 +1,8 @@
 import { app } from "./app";
-import "dotenv/config";
+import { nodeEnv, port } from "./constants/env";
+import { connectToDatabase } from "./config/db";
 
-const port = process.env.PORT! || 5000;
-const environment = process.env.NODE_ENV!;
-
-app.listen(port, () => {
-  console.log(
-    `App is running at port ${port} in the ${environment} environment`
-  );
+app.listen(port, async () => {
+  console.log(`App is running at port ${port} in the ${nodeEnv} environment`);
+  await connectToDatabase();
 });
